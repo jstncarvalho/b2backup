@@ -15,7 +15,7 @@ declare -A dir=(
 
 logFile="/var/log/b2backup/$(date +%d)"
 
-b2 authorize-account $id $key &> $logFile.log
+/usr/local/bin/b2 authorize-account $id $key &> $logFile.log
 for i in "${!dir[@]}"; do
-    b2 sync --delete --threads $threads --noProgress "${dir["$i"]}" "b2://"$bucket/"$i" &> $logFile.log
+    /usr/local/bin/b2 sync --delete --threads $threads --noProgress "${dir["$i"]}" "b2://"$bucket/"$i" &> $logFile.log
 done
